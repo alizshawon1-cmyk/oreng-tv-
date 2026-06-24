@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<!-- BTV এর জন্য সঠিক লোগো লিঙ্ক বসান -->
+<div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8', 'BTV')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/BTV_logo.png/200px-BTV_logo.png" alt="BTV" class="channel-logo">
+    <div class="channel-name">BTV</div>
+</div>
+<div class="channel-card" onclick="playChannel('লিংক', 'BTV')">
+    <div class="channel-name" style="font-size: 1.2em; padding: 10px;">BTV</div>
+</div>
+.channel-card { 
+    background: #ffffff; /* কার্ড সাদা */
+    color: #000000;      /* টেক্সট কালো */
+    border: 2px solid #ff0055; /* বর্ডার লাল */
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
