@@ -3,71 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { background-color: #0f172a; margin: 0; padding: 20px; font-family: sans-serif; }
+        body { background: #0b0e14; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; }
+        .main-container { display: flex; gap: 20px; }
         
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* ৪ কলাম */
-            gap: 15px;
-        }
+        /* ভিডিও প্লেয়ার সেকশন */
+        .video-section { flex: 2; }
+        .video-box { width: 100%; height: 450px; background: #000; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #333; }
+        .status { margin-top: 10px; color: #ff0055; font-weight: bold; }
 
-        .channel-card {
-            background: #fff;
-            padding: 20px 10px;
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 2px solid transparent;
-        }
-
-        /* কার্ডের ওপর সিলেক্ট করলে বা হোভার করলে বর্ডার */
-        .channel-card:hover { border: 2px solid #2dd4bf; }
-
-        .channel-name {
-            font-size: 14px;
-            font-weight: bold;
-            color: #0f172a;
-            margin-bottom: 5px;
-        }
-
-        .shawon-play-text {
-            color: #e11d48; /* গোলাপি-লাল শেড */
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+        /* চ্যানেল লিস্ট সেকশন */
+        .sidebar { flex: 1; background: #161b22; padding: 15px; border-radius: 10px; }
+        .channel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .card { background: #fff; color: #000; padding: 10px 5px; border-radius: 8px; text-align: center; cursor: pointer; }
+        .card:hover { border: 2px solid #00d4ff; }
+        .c-name { font-size: 11px; font-weight: bold; }
+        .s-play { color: #ff0055; font-size: 8px; font-weight: bold; margin-top: 3px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-<div class="grid-container">
-    <!-- কার্ড ১ -->
-    <div class="channel-card">
-        <div class="channel-name">BTV</div>
-        <div class="shawon-play-text">SHAWON PLAY</div>
-    </div>
+    <h2 style="margin-top: 0;">SHAWON TV LIVE</h2>
 
-    <!-- কার্ড ২ -->
-    <div class="channel-card">
-        <div class="channel-name">Jamuna TV</div>
-        <div class="shawon-play-text">SHAWON PLAY</div>
-    </div>
+    <div class="main-container">
+        <!-- ভিডিও এরিয়া -->
+        <div class="video-section">
+            <div class="video-box">Video Player</div>
+            <div class="status">● এখন চলছে: BTV</div>
+        </div>
 
-    <!-- কার্ড ৩ -->
-    <div class="channel-card">
-        <div class="channel-name">Channel 24</div>
-        <div class="shawon-play-text">SHAWON PLAY</div>
+        <!-- চ্যানেল লিস্ট এরিয়া -->
+        <div class="sidebar">
+            <div class="channel-grid">
+                <!-- কার্ড ১ -->
+                <div class="card">
+                    <div class="c-name">BTV</div>
+                    <div class="s-play">SHAWON PLAY</div>
+                </div>
+                <!-- কার্ড ২ -->
+                <div class="card">
+                    <div class="c-name">Jamuna TV</div>
+                    <div class="s-play">SHAWON PLAY</div>
+                </div>
+                <!-- বাকি কার্ডগুলো এভাবে কপি করে বসান -->
+            </div>
+        </div>
     </div>
-
-    <!-- কার্ড ৪ -->
-    <div class="channel-card">
-        <div class="channel-name">Ekattor HD</div>
-        <div class="shawon-play-text">SHAWON PLAY</div>
-    </div>
-    
-    <!-- আপনি আপনার বাকি চ্যানেলগুলো এই একইভাবে যোগ করুন -->
-</div>
 
 </body>
 </html>
