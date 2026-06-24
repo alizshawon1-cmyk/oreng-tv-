@@ -2,46 +2,39 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHAWON PLAY</title>
     <style>
-        body { 
-            background-color: #000; 
-            margin: 0; 
-            padding: 10px; 
-            font-family: sans-serif; 
-        }
+        body { background-color: #0f172a; margin: 0; padding: 20px; font-family: sans-serif; }
         
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(4, 1fr); /* ৪ কলাম */
+            gap: 15px;
         }
 
         .channel-card {
             background: #fff;
-            padding: 8px;
+            padding: 20px 10px;
             border-radius: 12px;
             text-align: center;
-            /* আপনার ছবির মতো রঙিন বর্ডার এফেক্ট */
-            border: 3px solid #ff0055; 
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: 0.3s;
+            border: 2px solid transparent;
         }
 
-        .channel-card:hover { transform: scale(1.05); }
+        /* কার্ডের ওপর সিলেক্ট করলে বা হোভার করলে বর্ডার */
+        .channel-card:hover { border: 2px solid #2dd4bf; }
 
-        .logo-img { 
-            width: 100%; 
-            height: 40px; 
-            object-fit: contain; 
-        }
-
-        .brand-text {
-            color: #d10000; /* হালকা লাল রঙ */
-            font-size: 8px;
+        .channel-name {
+            font-size: 14px;
             font-weight: bold;
-            margin-top: 4px;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .shawon-play-text {
+            color: #e11d48; /* গোলাপি-লাল শেড */
+            font-size: 10px;
+            font-weight: bold;
             text-transform: uppercase;
         }
     </style>
@@ -51,21 +44,29 @@
 <div class="grid-container">
     <!-- কার্ড ১ -->
     <div class="channel-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Jamuna_TV.png" class="logo-img">
-        <div class="brand-text">SHAWON PLAY</div>
+        <div class="channel-name">BTV</div>
+        <div class="shawon-play-text">SHAWON PLAY</div>
     </div>
 
     <!-- কার্ড ২ -->
     <div class="channel-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Somoy_TV_logo.png" class="logo-img">
-        <div class="brand-text">SHAWON PLAY</div>
+        <div class="channel-name">Jamuna TV</div>
+        <div class="shawon-play-text">SHAWON PLAY</div>
     </div>
 
     <!-- কার্ড ৩ -->
     <div class="channel-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/BTV_logo.png/200px-BTV_logo.png" class="logo-img">
-        <div class="brand-text">SHAWON PLAY</div>
+        <div class="channel-name">Channel 24</div>
+        <div class="shawon-play-text">SHAWON PLAY</div>
     </div>
+
+    <!-- কার্ড ৪ -->
+    <div class="channel-card">
+        <div class="channel-name">Ekattor HD</div>
+        <div class="shawon-play-text">SHAWON PLAY</div>
+    </div>
+    
+    <!-- আপনি আপনার বাকি চ্যানেলগুলো এই একইভাবে যোগ করুন -->
 </div>
 
 </body>
