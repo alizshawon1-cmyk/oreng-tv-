@@ -2,46 +2,37 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHAWON TV LIVE</title>
     <style>
-        body { background: #0f0f0f; color: #fff; margin: 0; padding: 20px; font-family: sans-serif; }
-        .main-wrapper { display: flex; gap: 20px; }
-        
-        /* ভিডিও প্লেয়ার সেকশন */
-        #video-container { flex: 2; }
-        video { width: 100%; border-radius: 10px; background: #000; min-height: 400px; }
-        
-        /* গ্রিড ডিজাইন (image_89ea10.png এর মতো) */
-        .sidebar { flex: 1; background: #1a1d29; padding: 15px; border-radius: 10px; }
-        .channel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .channel-card { background: #fff; padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; color: #000; font-weight: bold; transition: 0.3s; }
-        .channel-card:hover { transform: scale(1.05); border: 2px solid #00d4ff; }
-        .sub-text { font-size: 10px; color: #ff0055; display: block; margin-top: 5px; }
+        body { background: #0f0f0f; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; }
+        .header { text-align: center; padding: 20px; background: #1a1d29; border-bottom: 3px solid #ff0055; }
+        .main-container { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; }
+        #video-container { flex: 2; min-width: 350px; }
+        video { width: 100%; height: 450px; border-radius: 10px; background: #000; }
+        .sidebar { flex: 1; min-width: 300px; background: #1a1d29; padding: 15px; border-radius: 10px; height: 70vh; overflow-y: auto; }
+        .channel-btn { background: #2c3e50; color: white; padding: 12px; margin: 5px; border-radius: 5px; text-align: center; cursor: pointer; display: block; border: 1px solid #444; }
+        .channel-btn:hover { background: #ff0055; }
     </style>
 </head>
 <body>
 
-<div class="main-wrapper">
+<div class="header"><h1>SHAWON TV LIVE</h1></div>
+
+<div class="main-container">
     <div id="video-container">
         <video id="video" controls autoplay></video>
-        <h2 id="channel-name">চ্যানেল নির্বাচন করুন</h2>
+        <h3 id="channel-name">চ্যানেল নির্বাচন করুন</h3>
     </div>
 
     <div class="sidebar">
         <h3>চ্যানেল লিস্ট</h3>
-        <div class="channel-grid">
-            <!-- চ্যানেল কার্ডসমূহ -->
-            <div class="channel-card" onclick="playChannel('https://stream.btv.gov.bd/hls/btv.m3u8', 'BTV')">
-                BTV <span class="sub-text">SHAWON PLAY</span>
-            </div>
-            <div class="channel-card" onclick="playChannel('https://live.jamuna.tv/hls/live.m3u8', 'Jamuna TV')">
-                Jamuna TV <span class="sub-text">SHAWON PLAY</span>
-            </div>
-            <div class="channel-card" onclick="playChannel('https://live.channel24bd.tv/hls/live.m3u8', 'Channel 24')">
-                Channel 24 <span class="sub-text">SHAWON PLAY</span>
-            </div>
-            <!-- এভাবে বাকি চ্যানেলগুলো কার্ড আকারে যোগ করুন -->
-        </div>
+        <!-- বাংলাদেশ চ্যানেল -->
+        <div class="channel-btn" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8', 'BTV')">BTV</div>
+        <div class="channel-btn" onclick="playChannel('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy TV')">Somoy TV</div>
+        <div class="channel-btn" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8', 'News 24')">News 24</div>
+        <div class="channel-btn" onclick="playChannel('https://sm-monirul.top/toffee/play/sony_sports_1_hd.m3u8', 'Sony Sports Ten 1')">Sony Sports Ten 1</div>
+        <div class="channel-btn" onclick="playChannel('https://sm-monirul.top/toffee/play/cartoon_network_hd.m3u8', 'Cartoon Network HD')">Cartoon Network HD</div>
     </div>
 </div>
 
@@ -49,16 +40,16 @@
 <script>
     var video = document.getElementById('video');
     var hls = new Hls();
-
     function playChannel(url, name) {
         document.getElementById('channel-name').innerText = "এখন চলছে: " + name;
-        hls.destroy();
-        hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-        video.play();
+        if (Hls.isSupported()) {
+            hls.destroy();
+            hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+            video.play();
+        }
     }
 </script>
-
 </body>
 </html>
