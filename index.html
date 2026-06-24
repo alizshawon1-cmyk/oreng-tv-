@@ -3,36 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHAWON TV LIVE</title>
+    <title>SHAWON TV LIVE - প্রফেশনাল গ্রিড</title>
     <style>
-        body { background: #0f0f0f; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; }
-        .header { text-align: center; padding: 20px; background: #1a1d29; border-bottom: 3px solid #ff0055; }
-        .main-container { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; }
-        #video-container { flex: 2; min-width: 350px; }
-        video { width: 100%; height: 450px; border-radius: 10px; background: #000; }
-        .sidebar { flex: 1; min-width: 300px; background: #1a1d29; padding: 15px; border-radius: 10px; height: 70vh; overflow-y: auto; }
-        .channel-btn { background: #2c3e50; color: white; padding: 12px; margin: 5px; border-radius: 5px; text-align: center; cursor: pointer; display: block; border: 1px solid #444; }
-        .channel-btn:hover { background: #ff0055; }
+        body {
+            background-color: #0f0f0f; /* ডার্ক ব্যাকগ্রাউন্ড, image_8b380c.png এর মতো */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            gap: 20px;
+            height: 100vh;
+        }
+
+        /* ভিডিও প্লেয়ার সেকশন */
+        #video-section {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #current-channel {
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #00d4ff;
+        }
+
+        /* লোগো গ্রিড সেকশন (image_8b380c.png এর মতো) */
+        .sidebar-grid {
+            flex: 1;
+            background: #111; /* সাইডবার ডার্ক */
+            padding: 10px;
+            border-radius: 10px;
+            overflow-y: auto; /* স্ক্রলিং */
+        }
+
+        h2.category-title {
+            text-align: center;
+            color: #ff0055;
+            border-bottom: 2px solid #ff0055;
+            padding-bottom: 5px;
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* ৩টি কলাম */
+            gap: 10px;
+            padding: 10px 0;
+        }
+
+        /* লোগো কার্ড (image_8b380c.png এর মতো) */
+        .channel-card {
+            background: #ffffff; /* সাদা কার্ড */
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .channel-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00d4ff; /* হোভার এফেক্ট */
+        }
+
+        .channel-logo {
+            width: 70px; /* লোগো সাইজ ছোট (adjust if needed) */
+            height: 50px;
+            object-fit: contain; /* লোগো স্প্রেচ হবে না */
+        }
+
+        .channel-name {
+            color: #ff0055; /* কার্ডের নিচের লাল লেখা */
+            font-size: 0.7em;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 5px;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body>
 
-<div class="header"><h1>SHAWON TV LIVE</h1></div>
-
 <div class="main-container">
-    <div id="video-container">
+    <div id="video-section">
         <video id="video" controls autoplay></video>
-        <h3 id="channel-name">চ্যানেল নির্বাচন করুন</h3>
+        <div id="current-channel">চ্যানেল নির্বাচন করুন</div>
     </div>
 
-    <div class="sidebar">
-        <h3>চ্যানেল লিস্ট</h3>
-        <!-- বাংলাদেশ চ্যানেল -->
-        <div class="channel-btn" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8', 'BTV')">BTV</div>
-        <div class="channel-btn" onclick="playChannel('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy TV')">Somoy TV</div>
-        <div class="channel-btn" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8', 'News 24')">News 24</div>
-        <div class="channel-btn" onclick="playChannel('https://sm-monirul.top/toffee/play/sony_sports_1_hd.m3u8', 'Sony Sports Ten 1')">Sony Sports Ten 1</div>
-        <div class="channel-btn" onclick="playChannel('https://sm-monirul.top/toffee/play/cartoon_network_hd.m3u8', 'Cartoon Network HD')">Cartoon Network HD</div>
+    <div class="sidebar-grid">
+        <h2 class="category-title">বাংলাদেশ</h2>
+        <div class="channel-grid">
+            <!-- লোগো কার্ডসমূহ (লিঙ্ক ও লোগো url আপনার M3U থেকে নেওয়া) -->
+            
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8', 'BTV')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/btv.png" alt="BTV" class="channel-logo">
+                <div class="channel-name">BTV</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy TV')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/somoytv.png" alt="Somoy TV" class="channel-logo">
+                <div class="channel-name">SOMOY TV</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8', 'Jamuna TV')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/jamunatv.png" alt="Jamuna TV" class="channel-logo">
+                <div class="channel-name">JAMUNA TV</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8', 'Ekattor HD')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/ekattor.png" alt="Ekattor HD" class="channel-logo">
+                <div class="channel-name">EKATTOR HD</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8', 'Independent TV')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/independent.png" alt="Independent TV" class="channel-logo">
+                <div class="channel-name">INDEPENDENT</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8', 'DBC News')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/dbcnews.png" alt="DBC News" class="channel-logo">
+                <div class="channel-name">DBC NEWS</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8', 'ATN News')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/atnnews.png" alt="ATN News" class="channel-logo">
+                <div class="channel-name">ATN NEWS</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8', 'Channel 24')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/channel24.png" alt="Channel 24" class="channel-logo">
+                <div class="channel-name">CHANNEL 24</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/index.m3u8', 'NTV')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/ntv.png" alt="NTV" class="channel-logo">
+                <div class="channel-name">NTV</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8', 'Bangla Vision')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/banglavision.png" alt="Bangla Vision" class="channel-logo">
+                <div class="channel-name">BANGLA VISION</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8', 'Channel i')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/channel_i.png" alt="Channel i" class="channel-logo">
+                <div class="channel-name">CHANNEL I</div>
+            </div>
+
+            <div class="channel-card" onclick="playChannel('https://app24.jagobd.com.bd/.../anandatv.stream/...', 'Ananda TV')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/anandatv.png" alt="Ananda TV" class="channel-logo">
+                <div class="channel-name">ANANDA TV</div>
+            </div>
+
+        </div>
+
+        <h2 class="category-title">স্পোর্টস</h2>
+        <div class="channel-grid">
+            <div class="channel-card" onclick="playChannel('https://sm-monirul.top/toffee/play/sony_sports_1_hd.m3u8', 'Sony Ten 1 HD')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/sonytent1.png" alt="Sony Ten 1 HD" class="channel-logo">
+                <div class="channel-name">TEN 1 HD</div>
+            </div>
+            <div class="channel-card" onclick="playChannel('https://sm-monirul.top/toffee/play/sony_sports_2_hd.m3u8', 'Sony Ten 2 HD')">
+                <img src="https://alizshawon1-cmyk.github.io/logo/sonytent2.png" alt="Sony Ten 2 HD" class="channel-logo">
+                <div class="channel-name">TEN 2 HD</div>
+            </div>
+        </div>
+        
+        <!-- এভাবে আপনার M3U থেকে বাকি সব চ্যানেল একইভাবে লোগো url দিয়ে গ্রিডে যোগ করুন -->
     </div>
 </div>
 
@@ -40,16 +201,16 @@
 <script>
     var video = document.getElementById('video');
     var hls = new Hls();
+
     function playChannel(url, name) {
-        document.getElementById('channel-name').innerText = "এখন চলছে: " + name;
-        if (Hls.isSupported()) {
-            hls.destroy();
-            hls = new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-            video.play();
-        }
+        document.getElementById('current-channel').innerText = "এখন চলছে: " + name;
+        hls.destroy();
+        hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        video.play();
     }
 </script>
+
 </body>
 </html>
