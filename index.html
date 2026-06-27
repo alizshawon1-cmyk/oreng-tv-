@@ -38,13 +38,6 @@
         { name: "T Sports", url: "https://trs1.aynaott.com/tsports/index.m3u8", group: "Bangladesh" },
         { name: "Somoy TV", url: "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8", group: "Bangladesh" },
         { name: "Jamuna TV", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8", group: "Bangladesh" },
-        { name: "BTV", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8", group: "Bangladesh" },
-   
-        { name: "Ekattor HD", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8", group: "Bangladesh" }
-        { name: "SHAWON PLAY LIVE", url: "http://114.130.57.233:8080/manik-kutta-moharaza-kuttar-baccha-t.me/tvserverhd/video.m3u8?token=manik-kuttar-baccha-t.me/tvserverhd", group: "Bangladesh" },
-        { name: "T Sports", url: "https://trs1.aynaott.com/tsports/index.m3u8", group: "Bangladesh" },
-        { name: "Somoy TV", url: "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8", group: "Bangladesh" },
-        { name: "Jamuna TV", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8", group: "Bangladesh" },
         { name: "Ekattor HD", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8", group: "Bangladesh" },
         { name: "Independent TV", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8", group: "Bangladesh" },
         { name: "DBC News", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8", group: "Bangladesh" },
@@ -65,9 +58,6 @@
         { name: "SRK TV", url: "https://srknowapp.ncare.live/srktvhlswodrm/srktv.stream/playlist.m3u8", group: "Bangladesh" },
         { name: "G Series Drama", url: "https://vods2.aynaott.com/gseriesDrama/index.m3u8", group: "Bangladesh" },
         { name: "Channel S TV", url: "https://app.ncare.live/live-orgin/channels.stream/live-orgin/channels.stream/chunks.m3u8", group: "Bangladesh" },
-    
-
-        // ENTERTAINMENT & MOVIES (35)
         { name: "Zee Bangla HD", url: "https://sm-monirul.top/toffee/play/zee_bangla.m3u8", group: "Movies" },
         { name: "Zee Bollywood", url: "https://sm-monirul.top/toffee/play/zee_bollywood.m3u8", group: "Movies" },
         { name: "Zee Action", url: "https://sm-monirul.top/toffee/play/zee_action.m3u8", group: "Movies" },
@@ -99,14 +89,11 @@
         { name: "Motu Patlu TV", url: "https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8", group: "Cartoon" },
         { name: "Tom & Jerry TV", url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/tracks-v1a1/mono.ts.m3u8", group: "Cartoon" },
         { name: "Doraemon TV", url: "https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8", group: "Cartoon" },
-
-        // SPORTS (40)
         { name: "Sony Sports 1 HD", url: "https://sm-monirul.top/toffee/play/sony_sports_1_hd.m3u8", group: "Sports" },
         { name: "Sony Sports 2 HD", url: "https://sm-monirul.top/toffee/play/sony_sports_2_hd.m3u8", group: "Sports" },
         { name: "Sony Sports 5 HD", url: "https://sm-monirul.top/toffee/play/sony_sports_5_hd.m3u8", group: "Sports" },
         { name: "Ten Cricket", url: "https://sm-monirul.top/toffee/play/ten_cricket.m3u8", group: "Sports" },
         { name: "Euro Sports HD", url: "https://sm-monirul.top/toffee/play/euro_sports_hd.m3u8", group: "Sports" },
-      
         { name: "fusball Sports", url: "http://str2.v3v3v.xyz:2082/live/rokhsi25_951396/POm6KqnW/1949446.m3u8", group: "Sports" },
         { name: "Eleven Sports", url: "http://znty.dyndns.org:5010/hls/eleven1.m3u8", group: "Sports" },
         { name: "Bein Sports Extra", url: "https://amg01334-beinsportsllc-beinxtraesp-localnow-aekzc.amagi.tv/playlistR1080p.m3u8", group: "Sports" },
@@ -115,13 +102,7 @@
         { name: "NBC Puerto Rico", url: "https://nbculocallive.akamaized.net/hls/live/2037499/puertorico/stream1/master.m3u8", group: "Sports" },
         { name: "Win Sports", url: "https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8", group: "Sports" },
         { name: "Dazn Direct", url: "https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8", group: "Sports" },
-       
         { name: "Discovery SD", url: "https://sm-monirul.top/toffee/play/discovery_sd.m3u8", group: "Doc" }
-
-
-
-        
-        // বাকি চ্যানেলগুলো একইভাবে এই তালিকায় যোগ করুন...
     ];
 
     const player = videojs('my-video');
@@ -134,9 +115,7 @@
         btn.innerHTML = `<h4>${ch.name}</h4><p>${ch.group}</p>`;
         
         btn.onclick = () => {
-            // প্রক্সি যোগ করা হলো যাতে সব লিংক চলে
             const proxiedUrl = "https://tv.beyondtaxconsultants.com/api/proxy?url=" + encodeURIComponent(ch.url);
-            
             player.src({ src: proxiedUrl, type: 'application/x-mpegURL' });
             player.play();
             status.innerText = "এখন চলছে: " + ch.name;
