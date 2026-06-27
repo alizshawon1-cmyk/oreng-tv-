@@ -1,14 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <title>SHAWON PLAY - 100+ Live TV</title>
-    <!-- ভিডিও প্লেয়ারের স্টাইল -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    
-    <!-- ভিডিও স্ট্রিমিং সাপোর্ট এর জন্য স্ক্রিপ্ট -->
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script src="https://unpkg.com/@videojs/http-streaming@3.7.0/dist/videojs-http-streaming.min.js"></script>
 
@@ -37,9 +32,12 @@
 </div>
 
 <script>
-    const channels = [ // BANGLADESH (25)
+    const channels = [
+        // আপনার আগের লিংকগুলো এখানে...
         { name: "BTV", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8", group: "Bangladesh" },
-   
+        { name: "SHAWON PLAY LIVE", url: "http://114.130.57.233:8080/manik-kutta-moharaza-kuttar-baccha-t.me/tvserverhd/video.m3u8?token=manik-kuttar-baccha-t.me/tvserverhd", group: "Bangladesh" },
+
+
         { name: "SHAWON PLAY LIVE", url: "http://114.130.57.233:8080/manik-kutta-moharaza-kuttar-baccha-t.me/tvserverhd/video.m3u8?token=manik-kuttar-baccha-t.me/tvserverhd", group: "Bangladesh" },
         { name: "T Sports", url: "https://trs1.aynaott.com/tsports/index.m3u8", group: "Bangladesh" },
         { name: "Somoy TV", url: "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8", group: "Bangladesh" },
@@ -114,20 +112,26 @@
         { name: "NBC Puerto Rico", url: "https://nbculocallive.akamaized.net/hls/live/2037499/puertorico/stream1/master.m3u8", group: "Sports" },
         { name: "Win Sports", url: "https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8", group: "Sports" },
         { name: "Dazn Direct", url: "https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8", group: "Sports" },
-       
-        { name: "Discovery SD", url: "https://sm-monirul.top/toffee/play/discovery_sd.m3u8", group: "Doc" }
+        // ... অন্যান্য সব লিংক আগের মতোই রাখুন
     ];
 
     const player = videojs('my-video');
     const grid = document.getElementById('grid');
     const status = document.getElementById('status');
 
+    // প্রক্সি ফাংশন: এটি HTTP লিংককে HTTPS প্রক্সিতে রূপান্তর করবে
+    function getProxiedUrl(url) {
+        return "https://tv.beyondtaxconsultants.com/api/proxy?url=" + encodeURIComponent(url);
+    }
+
     channels.forEach(ch => {
         const btn = document.createElement('div');
         btn.className = 'channel-btn';
         btn.innerHTML = `<h4>${ch.name}</h4><p>SHAWON PLAY</p>`;
         btn.onclick = () => {
-            player.src({ src: ch.url, type: 'application/x-mpegURL' });
+            // প্রক্সি লিংক ব্যবহার করা হলো
+            const finalUrl = getProxiedUrl(ch.url);
+            player.src({ src: finalUrl, type: 'application/x-mpegURL' });
             player.play();
             status.innerText = "এখন চলছে: " + ch.name;
         };
