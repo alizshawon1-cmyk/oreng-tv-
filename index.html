@@ -2,67 +2,47 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>U Complete TV Player</title>
+    <title>U COMPLETE TV</title>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
-        :root { --bg-color: #161b22; --accent-color: #e5b860; }
-        body { background: #0b0e14; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; display: flex; gap: 20px; justify-content: center; }
-        .player-box { width: 65%; background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid #30363d; }
-        .logo-header { text-align: center; font-size: 40px; font-weight: 800; color: var(--accent-color); margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
-        #video { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; }
-        .channel-box { width: 35%; background: var(--bg-color); padding: 15px; border-radius: 12px; border: 1px solid #30363d; height: 80vh; overflow-y: auto; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .card { background: #21262d; padding: 15px; border-radius: 8px; cursor: pointer; text-align: center; border: 1px solid #30363d; transition: 0.3s; color: var(--accent-color); }
-        .card:hover { background: #30363d; border: 1px solid var(--accent-color); }
+        body { background: #121212; color: #fff; text-align: center; font-family: sans-serif; }
+        video { width: 90%; max-width: 800px; border: 3px solid #333; margin-top: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; padding: 20px; }
+        button { padding: 15px; cursor: pointer; background: #ff4757; color: white; border: none; border-radius: 5px; font-weight: bold; }
+        button:hover { background: #ff6b81; }
     </style>
 </head>
 <body>
 
-<div class="player-box">
-    <div class="logo-header">U COMPLETE TV</div>
+    <h1>U COMPLETE TV</h1>
     <video id="video" controls autoplay></video>
-</div>
 
-<div class="channel-box">
-    <div class="grid" id="channelList"></div>
-</div>
+    <div class="grid">
+        <button onclick="playChannel('https://cdn5.zohanayaan.com:1686/hls/telmunda.m3u8?md5=gGbsi4w1wtEnNbJDJFLd1Q&expires=1782815010')">Telmunda</button>
+        <button onclick="playChannel('https://cdn7.zohanayaan.com:1686/hls/deportesplus9.m3u8?md5=dA4_FRWaj_GT46mvjHkxPA&expires=1782815031')">Deportes Plus 9</button>
+        <button onclick="playChannel('https://cdn2.zohanayaan.com:1686/hls/bein1france.m3u8?md5=7zb1Fc3YWPpImBImeSA1ng&expires=1782815010')">Bein France 1</button>
+        <button onclick="playChannel('https://cdn8.zohanayaan.com:1686/hls/ptvpk.m3u8?md5=2evzqxQIcWv6IG4uMxVbhg&expires=1782814969')">PTV Sports</button>
+        <button onclick="playChannel('https://cdn3.zohanayaan.com:1686/hls/asportshd.m3u8?md5=MIBFQdGZ6fZNti9IRt2bPw&expires=1782814989')">A Sports HD</button>
+        <button onclick="playChannel('https://cdn2.zohanayaan.com:1686/hls/willowextra.m3u8?md5=m93rEM5c89TNzpmn37J9MQ&expires=1782814989')">Willow Extra</button>
+        <button onclick="playChannel('https://cdn4.zohanayaan.com:1686/hls/star1in.m3u8?md5=2j8Mj0AHMNd2M8shHaYXKA&expires=1782814969')">Star 1 India</button>
+    </div>
 
-<script>
-    // আপনার প্রক্সি ওয়ার্কারের লিঙ্ক
-    const proxy = "https://busy.alizshawon1.workers.dev/proxy/"; 
+    <script>
+        const proxy = "https://my-proxy-worker.alizshawon1.workers.dev/proxy/";
+        const video = document.getElementById('video');
+        let hls;
 
-    const channels = [
-        { name: "Telmunda", url: "https://cdn5.zohanayaan.com:1686/hls/telmunda.m3u8?md5=gGbsi4w1wtEnNbJDJFLd1Q&expires=1782815010" },
-        { name: "Deportes Plus 9", url: "https://cdn7.zohanayaan.com:1686/hls/deportesplus9.m3u8?md5=dA4_FRWaj_GT46mvjHkxPA&expires=1782815031" },
-        { name: "Bein France 1", url: "https://cdn2.zohanayaan.com:1686/hls/bein1france.m3u8?md5=7zb1Fc3YWPpImBImeSA1ng&expires=1782815010" },
-        { name: "PTV Sports", url: "https://cdn8.zohanayaan.com:1686/hls/ptvpk.m3u8?md5=2evzqxQIcWv6IG4uMxVbhg&expires=1782814969" },
-        { name: "A Sports HD", url: "https://cdn3.zohanayaan.com:1686/hls/asportshd.m3u8?md5=MIBFQdGZ6fZNti9IRt2bPw&expires=1782814989" },
-        { name: "Willow Extra", url: "https://cdn2.zohanayaan.com:1686/hls/willowextra.m3u8?md5=m93rEM5c89TNzpmn37J9MQ&expires=1782814989" },
-        { name: "Star 1 India", url: "https://cdn4.zohanayaan.com:1686/hls/star1in.m3u8?md5=2j8Mj0AHMNd2M8shHaYXKA&expires=1782814969" }
-    ];
-
-    const video = document.getElementById('video');
-    const list = document.getElementById('channelList');
-    let hls;
-
-    channels.forEach(ch => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `📺 <strong>${ch.name}</strong>`;
-        div.onclick = () => {
+        function playChannel(url) {
             if (hls) hls.destroy();
             hls = new Hls({
-                // এই ফাংশনটি ভিডিওর ছোট অংশগুলো লোড করার সময় প্রক্সি ব্যবহার নিশ্চিত করবে
-                xhrSetup: function(xhr, url) {
-                    xhr.open('GET', proxy + url, true);
+                xhrSetup: function(xhr, loadUrl) {
+                    xhr.open('GET', proxy + loadUrl, true);
                 }
             });
-            hls.loadSource(proxy + ch.url);
+            hls.loadSource(proxy + url);
             hls.attachMedia(video);
             video.play();
-        };
-        list.appendChild(div);
-    });
-</script>
+        }
+    </script>
 </body>
 </html>
