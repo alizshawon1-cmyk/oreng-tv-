@@ -42,6 +42,7 @@
     ];
 
     const video = document.getElementById('video');
+    const list = document.getElementById('channelList');
     let hls;
 
     channels.forEach(ch => {
@@ -51,7 +52,7 @@
         div.onclick = () => {
             if (hls) hls.destroy();
             hls = new Hls({
-                // প্রতিটি ভিডিও সেগমেন্ট প্রক্সির মাধ্যমে লোড হবে
+                // এই ফাংশনটি ভিডিওর ছোট অংশগুলো লোড করার সময় প্রক্সি ব্যবহার নিশ্চিত করবে
                 xhrSetup: function(xhr, url) {
                     xhr.open('GET', proxy + url, true);
                 }
@@ -60,7 +61,7 @@
             hls.attachMedia(video);
             video.play();
         };
-        document.getElementById('channelList').appendChild(div);
+        list.appendChild(div);
     });
 </script>
 </body>
