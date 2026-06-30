@@ -8,10 +8,9 @@
         :root { --bg-color: #161b22; --accent-color: #e5b860; }
         body { background: #0b0e14; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; display: flex; gap: 20px; justify-content: center; }
         .player-box { width: 65%; background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid #30363d; }
-        .logo-header { text-align: center; font-size: 40px; font-weight: 800; color: var(--accent-color); margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 0 10px rgba(229, 184, 96, 0.3); }
+        .logo-header { text-align: center; font-size: 40px; font-weight: 800; color: var(--accent-color); margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
         #video { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; }
         .channel-box { width: 35%; background: var(--bg-color); padding: 15px; border-radius: 12px; border: 1px solid #30363d; height: 80vh; overflow-y: auto; }
-        h2 { color: var(--accent-color); border-bottom: 2px solid #30363d; padding-bottom: 10px; margin-top: 0; text-align: center; font-size: 22px; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .card { background: #21262d; padding: 15px; border-radius: 8px; cursor: pointer; text-align: center; border: 1px solid #30363d; transition: 0.3s; color: var(--accent-color); }
         .card:hover { background: #30363d; border: 1px solid var(--accent-color); }
@@ -25,7 +24,6 @@
 </div>
 
 <div class="channel-box">
-    <h2>চ্যানেলসমূহ</h2>
     <div class="grid" id="channelList"></div>
 </div>
 
@@ -44,7 +42,7 @@
     ];
 
     const video = document.getElementById('video');
-    let hls = new Hls();
+    let hls;
 
     channels.forEach(ch => {
         const div = document.createElement('div');
@@ -53,11 +51,12 @@
         div.onclick = () => {
             if (hls) hls.destroy();
             hls = new Hls({
+                // প্রতিটি ভিডিও সেগমেন্ট প্রক্সির মাধ্যমে লোড হবে
                 xhrSetup: function(xhr, url) {
                     xhr.open('GET', proxy + url, true);
                 }
             });
-            hls.loadSource(ch.url);
+            hls.loadSource(proxy + ch.url);
             hls.attachMedia(video);
             video.play();
         };
