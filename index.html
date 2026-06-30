@@ -1,40 +1,90 @@
-HTML
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <title>U Complete TV Player</title>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <style>
-        :root { --bg-color: #161b22; --accent-color: #e5b860; }
-        body { background: #0b0e14; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; display: flex; gap: 20px; justify-content: center; }
-        .player-box { width: 65%; background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid #30363d; }
-        .logo-header { text-align: center; font-size: 40px; font-weight: 800; color: var(--accent-color); margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 0 10px rgba(229, 184, 96, 0.3); }
-        #video { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; }
-        .channel-box { width: 35%; background: var(--bg-color); padding: 15px; border-radius: 12px; border: 1px solid #30363d; height: 80vh; overflow-y: auto; }
-        h2 { color: var(--accent-color); border-bottom: 2px solid #30363d; padding-bottom: 10px; margin-top: 0; text-align: center; font-size: 22px; }
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .card { background: #21262d; padding: 20px 10px; border-radius: 8px; cursor: pointer; text-align: center; border: 1px solid #30363d; transition: 0.3s; color: var(--accent-color); }
-        .card:hover { background: #30363d; border: 1px solid var(--accent-color); }
-        .card strong { font-size: 14px; display: block; margin-top: 10px; color: var(--accent-color); font-weight: 700; }
-        .card:hover strong { color: #ffffff; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
-    </style>
+    <meta charset="UTF-8">
+    <title>U Complete TV Player</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        /* উজ্জ্বল সোনালী রঙ (Light/Bright Gold) */
+        :root {
+            --bg-color: #161b22; 
+            --accent-color: #e5b860; 
+        }
+
+        body { background: #0b0e14; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; display: flex; gap: 20px; justify-content: center; }
+        
+        .player-box { width: 65%; background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid #30363d; }
+        
+        /* হেডার আরও বড় এবং স্টাইলিশ করা হলো */
+        .logo-header { 
+            text-align: center; 
+            font-size: 40px; 
+            font-weight: 800; 
+            color: var(--accent-color); 
+            margin-bottom: 20px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(229, 184, 96, 0.3);
+        }
+        
+        #video { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; }
+        
+        .channel-box { width: 35%; background: var(--bg-color); padding: 15px; border-radius: 12px; border: 1px solid #30363d; height: 80vh; overflow-y: auto; }
+        
+        h2 { 
+            color: var(--accent-color); 
+            border-bottom: 2px solid #30363d; 
+            padding-bottom: 10px; 
+            margin-top: 0; 
+            text-align: center; 
+            font-size: 22px;
+        }
+        
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        
+        .card { 
+            background: #21262d; 
+            padding: 20px 10px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            text-align: center; 
+            border: 1px solid #30363d; 
+            transition: 0.3s;
+            color: var(--accent-color); 
+        }
+
+        .card:hover { 
+            background: #30363d; 
+            border: 1px solid var(--accent-color);
+        }
+        
+        .card strong { 
+            font-size: 14px; 
+            display: block; 
+            margin-top: 10px; 
+            color: var(--accent-color); 
+            font-weight: 700;
+        }
+
+        .card:hover strong { color: #ffffff; } 
+        
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 10px; }
+    </style>
 </head>
 <body>
 
 <div class="player-box">
-    <div class="logo-header">U COMPLETE TV</div>
-    <video id="video" controls autoplay></video>
+    <div class="logo-header">U COMPLETE TV</div>
+    <video id="video" controls autoplay></video>
 </div>
 
 <div class="channel-box">
-    <h2>চ্যানেলসমূহ</h2>
-    <div class="grid" id="channelList"></div>
+    <h2>চ্যানেলসমূহ</h2>
+    <div class="grid" id="channelList"></div>
 </div>
 
-<script>
+<script>  u bose dew
     const channels = [
        
     // --- Bangladesh ---
